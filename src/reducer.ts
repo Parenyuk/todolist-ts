@@ -135,6 +135,7 @@ export const updateTaskTC = (taskId: string, todoId: string, task: TaskType, obj
 export const deleteTodolistTC = (todolistId: string): ThunkType => (dispatch:  ThunkDispatch<AppStateType, unknown, ActionsType>) => {
       api.deleteTodolist(todolistId)
         .then(res => {
+            debugger
             dispatch(actions.deleteTodolistAC(todolistId))
         });
 }
@@ -167,7 +168,8 @@ export const deleteTaskTC = (todolistId: string, taskId: string): ThunkType => (
 export const addTodolistTC = (title: string): ThunkType => (dispatch:  ThunkDispatch<AppStateType, unknown, ActionsType>) => {
     api.createTodolist(title)
         .then(res => {
-            dispatch(actions.addTodolistAC(res.data.data.item))
+            debugger
+            dispatch(actions.addTodolistAC(res.data.data.items))
         });
 
 }
@@ -184,6 +186,7 @@ export const addTodolistTC = (title: string): ThunkType => (dispatch:  ThunkDisp
 export const getTasksTC = (todolistId: string): ThunkType =>  (dispatch:  ThunkDispatch<AppStateType, unknown, ActionsType>) => {
      api.getTasks(todolistId)
         .then(res => {
+            debugger
             let allTasks = res.data.items;
             dispatch(actions.setTasksAC(allTasks, todolistId))
         });
