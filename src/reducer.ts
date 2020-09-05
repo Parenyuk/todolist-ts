@@ -1,7 +1,8 @@
 import {api} from "./api";
-import {InferActionTypes} from './store';
+import {AppStateType, InferActionTypes} from './store';
 import {TaskType, TodoType} from './types';
 import {Dispatch} from 'redux';
+import {ThunkAction, ThunkDispatch} from 'redux-thunk';
 
 
 
@@ -121,31 +122,31 @@ const actions = {
 }
 
 type ActionsType = InferActionTypes<typeof actions>
-
+type ThunkType = ThunkAction<void, AppStateType, unknown, ActionsType>;
 //Redux Thunk
 
 
-export const updateTaskTC = (taskId: string, todoId: string, task: TaskType, obj: any) => (dispatch: Dispatch<ActionsType>) => {
+export const updateTaskTC = (taskId: string, todoId: string, task: TaskType, obj: any): ThunkType => (dispatch: ThunkDispatch<AppStateType, unknown, ActionsType>) => {
    api.updateTask(taskId, todoId, task )
         .then(res => {
             dispatch(actions.updateTaskAC(taskId, obj, todoId))
         })
 }
-export const deleteTodolistTC = (todolistId: string) => (dispatch:  Dispatch<ActionsType>) => {
+export const deleteTodolistTC = (todolistId: string): ThunkType => (dispatch:  ThunkDispatch<AppStateType, unknown, ActionsType>) => {
       api.deleteTodolist(todolistId)
         .then(res => {
             dispatch(actions.deleteTodolistAC(todolistId))
         });
 }
 
-export const addTaskTC = (newText: string, todolistId: string) => (dispatch:  Dispatch<ActionsType>, getState: any) => {
+export const addTaskTC = (newText: string, todolistId: string): ThunkType => (dispatch:  ThunkDispatch<AppStateType, unknown, ActionsType>) => {
     api.createTask(newText, todolistId).then(res => {
         let newTask = res.data.data.item;
         dispatch(actions.addTaskAC(newTask, todolistId))
     });
 }
 
-export const updateTitleTC = (title: string, todolistId: string) => (dispatch:  Dispatch<ActionsType>) => {
+export const updateTitleTC = (title: string, todolistId: string): ThunkType => (dispatch: ThunkDispatch<AppStateType, unknown, ActionsType>) => {
     debugger;
   api.updateTodolistTitle(todolistId, title)
         .then(res => {
@@ -154,7 +155,7 @@ export const updateTitleTC = (title: string, todolistId: string) => (dispatch:  
 
 }
 
-export const deleteTaskTC = (todolistId: string, taskId: string) => (dispatch:  Dispatch<ActionsType>) => {
+export const deleteTaskTC = (todolistId: string, taskId: string): ThunkType => (dispatch:  ThunkDispatch<AppStateType, unknown, ActionsType>) => {
     debugger
     api.deleteTask(taskId, todolistId)
         .then(res => {
@@ -163,7 +164,7 @@ export const deleteTaskTC = (todolistId: string, taskId: string) => (dispatch:  
 }
 
 
-export const addTodolistTC = (title: string) => (dispatch:  Dispatch<ActionsType>) => {
+export const addTodolistTC = (title: string): ThunkType => (dispatch:  ThunkDispatch<AppStateType, unknown, ActionsType>) => {
     api.createTodolist(title)
         .then(res => {
             dispatch(actions.addTodolistAC(res.data.data.item))
@@ -180,14 +181,14 @@ export const addTodolistTC = (title: string) => (dispatch:  Dispatch<ActionsType
 //
 //         });
 // }
-export const getTasksTC = (todolistId: string) => (dispatch:  Dispatch<ActionsType>, getState: any) => {
+export const getTasksTC = (todolistId: string): ThunkType =>  (dispatch:  ThunkDispatch<AppStateType, unknown, ActionsType>) => {
      api.getTasks(todolistId)
         .then(res => {
             let allTasks = res.data.items;
             dispatch(actions.setTasksAC(allTasks, todolistId))
         });
 }
-export const setTodolistsTC = (todolists: Array<TodoType>) => (dispatch:  Dispatch<ActionsType>) => {
+export const setTodolistsTC = (todolists: Array<TodoType>): ThunkType => (dispatch:  ThunkDispatch<AppStateType, unknown, ActionsType>) => {
        api.getTodolists().then(res => {
         dispatch(actions.setTodolistsAC(res.data))
        });
