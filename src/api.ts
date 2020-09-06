@@ -8,16 +8,17 @@ const instance = axios.create({
     headers: {"API-KEY": "9f30f44f-419b-4bf8-bd04-721891f6ba94"}
 });
 
-type TodolistsResponseType = {
-    data: {
-        items: TodoType
-    }
-}
 
 type TaskResponseType = {
-
         items: Array<TaskType>
+}
 
+
+
+type TodoResponseType<T> = {
+    data: {
+        items: T
+    }
 }
 
 export const api = {
@@ -25,25 +26,25 @@ export const api = {
         return instance.get<Array<TodoType>>("");
     },
     createTodolist(title: string) {
-        return instance.post<TodolistsResponseType>("", {title})
+        return instance.post<TodoResponseType<TodoType>>("", {title})
     },
     deleteTodolist(todolistId: string) {
-        return instance.delete<TodolistsResponseType>(`/${todolistId}` )
+        return instance.delete<TodoResponseType<TodoType>>(`/${todolistId}` )
     },
     updateTodolistTitle(todolistId: string, title: string) {
-        return instance.put<TodolistsResponseType>(`/${todolistId}`, {title: title})
+        return instance.put<TodoResponseType<TodoType>>(`/${todolistId}`, {title: title})
     },
     getTasks(todolistId: string) {
         return instance.get<TaskResponseType>(`/${todolistId}/tasks`)
     },
     createTask(newTaskTitle: string, todolistId: string) {
-        return instance.post<any>(`/${todolistId}/tasks`, {title: newTaskTitle});
+        return instance.post<TodoResponseType<TaskType>>(`/${todolistId}/tasks`, {title: newTaskTitle});
     },
     updateTask(taskId: string, todolistId: string, task: TaskType) {
-        return instance.put<any>(`/${todolistId}/tasks/${taskId}`,  task);
+        return instance.put<TodoResponseType<TaskType>>(`/${todolistId}/tasks/${taskId}`,  task);
     },
     deleteTask(taskId: string, todolistId: string) {
-        return instance.delete<any>(`/${todolistId}/tasks/${taskId}`)
+        return instance.delete<TodoResponseType<TaskType>>(`/${todolistId}/tasks/${taskId}`)
     }
 };
 

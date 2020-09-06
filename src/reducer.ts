@@ -142,15 +142,17 @@ export const deleteTodolistTC = (todolistId: string): ThunkType => (dispatch:  T
 
 export const addTaskTC = (newText: string, todolistId: string): ThunkType => (dispatch:  ThunkDispatch<AppStateType, unknown, ActionsType>) => {
     api.createTask(newText, todolistId).then(res => {
-        let newTask = res.data.data.item;
+        debugger
+        let newTask = res.data.data.items;
         dispatch(actions.addTaskAC(newTask, todolistId))
     });
 }
 
 export const updateTitleTC = (title: string, todolistId: string): ThunkType => (dispatch: ThunkDispatch<AppStateType, unknown, ActionsType>) => {
-    debugger;
+
   api.updateTodolistTitle(todolistId, title)
         .then(res => {
+
             dispatch(actions.updateTodolistTitleAC( todolistId, title))
         });
 
@@ -186,7 +188,6 @@ export const addTodolistTC = (title: string): ThunkType => (dispatch:  ThunkDisp
 export const getTasksTC = (todolistId: string): ThunkType =>  (dispatch:  ThunkDispatch<AppStateType, unknown, ActionsType>) => {
      api.getTasks(todolistId)
         .then(res => {
-            debugger
             let allTasks = res.data.items;
             dispatch(actions.setTasksAC(allTasks, todolistId))
         });
