@@ -14,9 +14,6 @@ class App extends React.Component {
 
     restoreState = () => {
         this.props.setTodolists();
-        // api.getTodolists().then(res => {
-        //     this.props.setTodolists(res.data);
-        // });
     };
 
     addTodoList = (title) => {
