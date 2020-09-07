@@ -1,19 +1,35 @@
-import React from 'react';
+import React, {ChangeEvent} from 'react';
 import './App.css';
+import {TaskType} from './types';
 
-class TodoListTask extends React.Component {
+
+type StateType = {
+    editMode: boolean
+
+
+}
+type OwnPropsType = {
+    changeStatus: (id: string, status: number) => void
+    changeTitle: (id: string, title: string) => void
+    deleteTask: (id: string) => void
+    task: TaskType
+    isDone: (task: boolean) => void
+
+}
+type PropsType = StateType & OwnPropsType
+class TodoListTask extends React.Component<PropsType> {
 
     state = {
         editMode: false,
         title: this.props.task.title
     };
 
-    onIsDoneChanged = (e) => {
+    onIsDoneChanged = (e: ChangeEvent<HTMLInputElement>) => {
         let status = e.currentTarget.checked ? 2 : 0;
         this.props.changeStatus(this.props.task.id, status);
     };
 
-    onTitleChanged = (e) => {
+    onTitleChanged = (e: ChangeEvent<HTMLInputElement>) => {
         this.setState({title: e.currentTarget.value});
     };
 
