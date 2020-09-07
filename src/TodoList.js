@@ -11,7 +11,7 @@ import {
     deleteTodolistTC, getTasksTC,
      updateTaskTC, updateTitleTC,
 } from "./reducer";
-import {api} from "./api";
+
 
 class TodoList extends React.Component {
 
@@ -23,22 +23,8 @@ class TodoList extends React.Component {
         this.props.getTasks(this.props.id);
     }
 
-    // restoreState = () => {
-    //     debugger
-    //     this.props.setTasks(allTasks, this.props.id)
-    //     // api.getTasks(this.props.id)
-    //     //     .then(res => {
-    //     //         let allTasks = res.data.items;
-    //     //         this.props.setTasks(allTasks, this.props.id);
-    //     //     });
-    // };
-
     addTask = (newText) => {
         this.props.addTask(newText, this.props.id)
-        // api.createTask(newText, this.props.id).then(res => {
-        //     let newTask = res.data.data.item;
-        //     this.props.addTask(newTask, this.props.id);
-        // });
     };
 
     changeFilter = (newFilterValue) => {
@@ -53,10 +39,6 @@ class TodoList extends React.Component {
         });
         let task = {...changedTask, ...obj};
         this.props.updateTask(taskId, this.props.id, task, obj)
-        // api.updateTask(taskId, this.props.id, task)
-        //     .then(res => {
-        //         this.props.updateTask(taskId, obj, this.props.id)
-        //     })
     };
 
     changeStatus = (taskId, status) => {
@@ -69,10 +51,6 @@ class TodoList extends React.Component {
 
     deleteTodolist = () => {
         this.props.deleteTodolist(this.props.id)
-        // api.deleteTodolist(this.props.id)
-        //     .then(res => {
-        //         this.props.deleteTodolist(this.props.id);
-        //     });
     };
 
     deleteTask = (taskId) => {
