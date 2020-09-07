@@ -1,7 +1,16 @@
 import React from 'react';
 import '../src/App.css';
 
-class TodoListFooter extends React.Component {
+type StateType = {
+    isHidden: boolean
+}
+
+type OwnPropsType = {
+    changeFilter: (value: string) => void
+    filterValue: string
+}
+    type PropsType = StateType &  OwnPropsType
+    class TodoListFooter extends React.Component<PropsType> {
 
     state = {
         isHidden: false
