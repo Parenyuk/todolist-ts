@@ -3,15 +3,15 @@ import './App.css';
 import TodoListTask from "./TodoListTask";
 import {TaskType} from './types';
 
-type OwnPropsType = {
-    changeStatus: (id: string, status: number) => void
-    changeTitle: (id: string, title: string) => void
-    deleteTask: (id: string) => void
-    tasks: Array<TaskType>
+// type OwnPropsType = {
+//     changeStatus: (id: string, status: number) => void
+//     changeTitle: (id: string, title: string) => void
+//     deleteTask: (id: string) => void
+//     tasks: Array<TaskType>
+//
+// }
 
-}
-
-class TodoListTasks extends React.Component<OwnPropsType> {
+class TodoListTasks extends React.Component {
     render = () => {
 
         let tasksElements = this.props.tasks.map(task => {
