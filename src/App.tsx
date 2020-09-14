@@ -3,10 +3,25 @@ import './App.css';
 import TodoList from "./TodoList";
 import AddNewItemForm from "./AddNewItemForm";
 import {connect} from "react-redux";
-import { addTodolistTC, setTodolistsTC} from "./reducer";
+import {ActionsType, addTodolistTC, setTodolistsTC} from './reducer';
+import {TodoType} from './types';
+import {AppStateType} from './store';
+import {Dispatch} from 'redux';
+import {ThunkDispatch} from 'redux-thunk';
 
+type MapStatePropsType = {
+    todolists: Array<TodoType>
+}
+type MapDispatchPropsType = {
+    setTodolists: () => void
+    addTodolist: (newTodolist: string)=> void
+}
+type OwnPropsType = {
 
-class App extends React.Component {
+}
+type PropsType = MapStatePropsType & MapDispatchPropsType & OwnPropsType
+
+class App extends React.Component<PropsType> {
 
     componentDidMount() {
         this.restoreState();
@@ -16,7 +31,7 @@ class App extends React.Component {
         this.props.setTodolists();
     };
 
-    addTodoList = (title) => {
+    addTodoList = (title: string) => {
         this.props.addTodolist(title)
 
     };
@@ -42,23 +57,23 @@ class App extends React.Component {
     }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state: AppStateType): MapStatePropsType => {
     return {
         todolists: state.reducer.todolists
     }
 };
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = (dispatch: ThunkDispatch<AppStateType, unknown, ActionsType>): MapDispatchPropsType => {
     return {
 
-        setTodolists(todolists) {
-            dispatch(setTodolistsTC(todolists))
+        setTodolists() {
+            dispatch(setTodolistsTC())
         },
-        addTodolist(newTodolist) {
+        addTodolist(newTodolist: string) {
             dispatch(addTodolistTC(newTodolist))
         }
     }
 };
 
-const ConnectedApp = connect(mapStateToProps, mapDispatchToProps)(App);
+const ConnectedApp = connect<MapStatePropsType, MapDispatchPropsType, OwnPropsType, AppStateType>(mapStateToProps, mapDispatchToProps)(App);
 export default ConnectedApp;

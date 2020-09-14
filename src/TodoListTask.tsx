@@ -5,6 +5,7 @@ import {TaskType} from './types';
 
 type StateType = {
     editMode: boolean
+    title: string
 
 
 }
@@ -16,8 +17,8 @@ type OwnPropsType = {
     isDone: (task: boolean) => void
 
 }
-type PropsType = StateType & OwnPropsType
-class TodoListTask extends React.Component<PropsType> {
+type PropsType = OwnPropsType
+class TodoListTask extends React.Component<PropsType, StateType> {
 
     state = {
         editMode: false,

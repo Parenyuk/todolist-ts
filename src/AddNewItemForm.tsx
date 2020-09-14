@@ -7,12 +7,12 @@ type StateType = {
 }
 
 type OwnPropsType = {
-    addItem: (newText: string) => void
+    addItem: (title: string) => void
 }
 
-type PropsType = StateType & OwnPropsType
+type PropsType = OwnPropsType
 
-class AddNewItemForm extends React.Component<PropsType> {
+class AddNewItemForm extends React.Component<PropsType, StateType> {
 
     state = {
         error: false,
