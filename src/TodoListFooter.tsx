@@ -9,8 +9,7 @@ type OwnPropsType = {
     changeFilter: (value: string) => void
     filterValue: string
 }
-    type PropsType = StateType &  OwnPropsType
-    class TodoListFooter extends React.Component<PropsType> {
+    class TodoListFooter extends React.Component<OwnPropsType & StateType> {
 
     state = {
         isHidden: false

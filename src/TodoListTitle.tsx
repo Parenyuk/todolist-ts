@@ -1,14 +1,17 @@
 import React, { ChangeEvent } from 'react';
 import './App.css';
 
+type StateType ={
+    title: string
+    editMode: boolean
+}
 
 type OwnPropsType = {
     title: string
-    editMode: boolean
     updateTitle: (title: string) => void
 }
 
- class TodoListTitle extends React.Component<OwnPropsType> {
+ class TodoListTitle extends React.Component<OwnPropsType, StateType> {
 
     state = {
         editMode: false,

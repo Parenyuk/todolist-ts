@@ -16,10 +16,8 @@ type MapDispatchPropsType = {
     setTodolists: () => void
     addTodolist: (newTodolist: string)=> void
 }
-type OwnPropsType = {
 
-}
-type PropsType = MapStatePropsType & MapDispatchPropsType & OwnPropsType
+type PropsType = MapStatePropsType & MapDispatchPropsType
 
 class App extends React.Component<PropsType> {
 
@@ -65,7 +63,6 @@ const mapStateToProps = (state: AppStateType): MapStatePropsType => {
 
 const mapDispatchToProps = (dispatch: ThunkDispatch<AppStateType, unknown, ActionsType>): MapDispatchPropsType => {
     return {
-
         setTodolists() {
             dispatch(setTodolistsTC())
         },
@@ -75,5 +72,5 @@ const mapDispatchToProps = (dispatch: ThunkDispatch<AppStateType, unknown, Actio
     }
 };
 
-const ConnectedApp = connect<MapStatePropsType, MapDispatchPropsType, OwnPropsType, AppStateType>(mapStateToProps, mapDispatchToProps)(App);
+const ConnectedApp = connect<MapStatePropsType, MapDispatchPropsType, {}, AppStateType>(mapStateToProps, mapDispatchToProps)(App);
 export default ConnectedApp;

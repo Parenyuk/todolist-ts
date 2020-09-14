@@ -14,7 +14,6 @@ type OwnPropsType = {
     changeTitle: (id: string, title: string) => void
     deleteTask: (id: string) => void
     task: TaskType
-    isDone: (task: boolean) => void
 
 }
 type PropsType = OwnPropsType
