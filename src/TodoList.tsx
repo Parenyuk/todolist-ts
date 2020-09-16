@@ -15,6 +15,8 @@ import {
 import {TaskType} from './types';
 import {ThunkDispatch} from 'redux-thunk';
 import {AppStateType} from './store';
+import {IconButton} from '@material-ui/core';
+import DeleteIcon from '@material-ui/icons/Delete';
 
 type StateType = {
     filterValue: string
@@ -29,7 +31,7 @@ type OwnPropsType = {
 }
 type MapDispatchPropsType = {
     addTask: (newTask: string, todolistId: string) => void
-    updateTask: (taskId: string, todoId: string, task: TaskType, obj: any ) => void
+    updateTask: (taskId: string, todoId: string, task: TaskType, obj: any) => void
     deleteTodolist: (todolistId: string) => void
     deleteTask: (todolistId: string, taskId: string) => void
     updateTodolistTitle: (title: string, todolistId: string) => void
@@ -38,7 +40,7 @@ type MapDispatchPropsType = {
 type PropsType = OwnPropsType & MapDispatchPropsType
 
 
-class TodoList extends React.Component<PropsType, StateType > {
+class TodoList extends React.Component<PropsType, StateType> {
 
     state: StateType = {
         filterValue: 'All'
@@ -94,7 +96,9 @@ class TodoList extends React.Component<PropsType, StateType > {
                 <div className="todoList-header">
                     <div className="wrapper">
                         <TodoListTitle title={this.props.title} updateTitle={this.updateTitle}/>
-                        <button onClick={this.deleteTodolist}>X</button>
+                        <IconButton aria-label="delete" size="small">
+                            <DeleteIcon fontSize="small" onClick={this.deleteTodolist}></DeleteIcon>
+                        </IconButton>
                     </div>
                     <AddNewItemForm addItem={this.addTask}/>
                 </div>

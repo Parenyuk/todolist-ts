@@ -1,7 +1,8 @@
 import React, {ChangeEvent} from 'react';
 import './App.css';
 import {ObjTaskType, TaskType} from './types';
-
+import {IconButton} from '@material-ui/core';
+import DeleteIcon from '@material-ui/icons/Delete';
 
 type StateType = {
     editMode: boolean
@@ -62,7 +63,11 @@ class TodoListTask extends React.Component<PropsType, StateType> {
                         ? <input onBlur={this.deactivateEditMode} onChange={this.onTitleChanged} autoFocus={true}
                                  value={this.state.title} />
                         : <span onClick={this.activateEditMode}>{this.props.task.title}</span>
-                    }, priority: {priotityTitle} <button onClick={this.onDeleteTask}>X</button>
+                    }, priority: {priotityTitle}
+                    <IconButton aria-label="delete"  size="small">
+                        <DeleteIcon fontSize="small" onClick={this.onDeleteTask} ></DeleteIcon>
+                    </IconButton>
+                    {/*<button onClick={this.onDeleteTask}>X</button>*/}
                 </div>
         );
     }
