@@ -1,10 +1,10 @@
 import React from 'react';
 import './App.css';
 import TodoListTask from "./TodoListTask";
-import {TaskType} from './types';
+import {ObjTaskType, TaskType} from './types';
 
 type OwnPropsType = {
-    changeStatus: (id: string, status: number) => void
+    changeStatus: (taskId: string, status: number) => void
     changeTitle: (id: string, title: string) => void
     deleteTask: (id: string) => void
     tasks: Array<TaskType>

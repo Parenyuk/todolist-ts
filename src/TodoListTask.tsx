@@ -1,6 +1,6 @@
 import React, {ChangeEvent} from 'react';
 import './App.css';
-import {TaskType} from './types';
+import {ObjTaskType, TaskType} from './types';
 
 
 type StateType = {
@@ -10,7 +10,7 @@ type StateType = {
 
 }
 type OwnPropsType = {
-    changeStatus: (id: string, status: number) => void
+    changeStatus: (taskId: string, status: number) => void
     changeTitle: (id: string, title: string) => void
     deleteTask: (id: string) => void
     task: TaskType

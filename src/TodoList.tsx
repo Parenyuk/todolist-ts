@@ -12,38 +12,20 @@ import {
     deleteTodolistTC, getTasksTC,
     updateTaskTC, updateTitleTC,
 } from './reducer';
-import {ObjTaskType, TaskType} from './types';
+import {TaskType} from './types';
 import {ThunkDispatch} from 'redux-thunk';
 import {AppStateType} from './store';
 
 type StateType = {
     filterValue: string
-    // changeStatus: (id: string, status: number) => void
-    // changeFilter: (newFilterValue: string) => void
-    // id: string
-    // title: string
-    // changeTask: (id: string, param: ObjTaskType) => void
-    // deleteTodolist: (id: string) => void
-    // deleteTask: (id: string, idparam: string) => void
-    // updateTodolistTitle: (id: string, idparam: string) => void
-    //
-    // updateTask: (taskId: string, id: string, task: TaskType, obj: any) => void
-    // getTasks: (id: string) => void
-    // addTask: (newTask: string, todolistId: string) => void
-
-
 }
 
 type OwnPropsType = {
     title: string
     id: string
     tasks: Array<TaskType>
-    // updateTask: (taskId: string, id: string, task: TaskType, obj: any) => void
-    // getTasks: (id: string) => void
-    // addTask: (newTask: string, todolistId: string) => void
-    // updateTodolistTitle: (id: string, propsId: string) => void
-    // deleteTask: (id: string, propsId: string) => void
-    // deleteTodolist: (id: string) => void
+
+
 }
 type MapDispatchPropsType = {
     addTask: (newTask: string, todolistId: string) => void
@@ -53,8 +35,10 @@ type MapDispatchPropsType = {
     updateTodolistTitle: (title: string, todolistId: string) => void
     getTasks: (todolistId: string) => void
 }
+type PropsType = OwnPropsType & MapDispatchPropsType
 
-class TodoList extends React.Component<OwnPropsType & StateType & MapDispatchPropsType> {
+
+class TodoList extends React.Component<PropsType, StateType > {
 
     state: StateType = {
         filterValue: 'All'
@@ -74,7 +58,7 @@ class TodoList extends React.Component<OwnPropsType & StateType & MapDispatchPro
         });
     };
 
-    changeTask = (taskId: string, obj: any, /*todolistId: string*/) => {
+    changeTask = (taskId: string, obj: any) => {
         let changedTask = this.props.tasks.find(task => {
             return task.id === taskId
         });
@@ -82,7 +66,7 @@ class TodoList extends React.Component<OwnPropsType & StateType & MapDispatchPro
         this.props.updateTask(taskId, this.props.id, task, obj)
     };
 
-    changeStatus = (taskId: string, status: string) => {
+    changeStatus = (taskId: string, status: number) => {
         this.changeTask(taskId, {status: status});
     };
 

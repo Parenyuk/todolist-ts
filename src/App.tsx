@@ -1,8 +1,8 @@
 import React from 'react';
 import './App.css';
-import TodoList from "./TodoList";
-import AddNewItemForm from "./AddNewItemForm";
-import {connect} from "react-redux";
+import TodoList from './TodoList';
+import AddNewItemForm from './AddNewItemForm';
+import {connect} from 'react-redux';
 import {ActionsType, addTodolistTC, setTodolistsTC} from './reducer';
 import {TodoType} from './types';
 import {AppStateType} from './store';
@@ -14,12 +14,11 @@ type MapStatePropsType = {
 }
 type MapDispatchPropsType = {
     setTodolists: () => void
-    addTodolist: (newTodolist: string)=> void
+    addTodolist: (newTodolist: string) => void
 }
 
-type PropsType = MapStatePropsType & MapDispatchPropsType
 
-class App extends React.Component<PropsType> {
+class App extends React.Component<MapStatePropsType & MapDispatchPropsType> {
 
     componentDidMount() {
         this.restoreState();
