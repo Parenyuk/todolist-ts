@@ -1,5 +1,9 @@
-import React, { ChangeEvent, KeyboardEvent } from 'react';
+import React, {ChangeEvent, KeyboardEvent} from 'react';
 import './App.css';
+import Button from '@material-ui/core/Button';
+import {createStyles, makeStyles, Theme} from '@material-ui/core/styles';
+import indigo from '@material-ui/core/colors/indigo';
+
 
 type StateType = {
     error: boolean
@@ -14,16 +18,17 @@ type PropsType = OwnPropsType
 
 class AddNewItemForm extends React.Component<PropsType, StateType> {
 
+
     state = {
         error: false,
-        title: ""
+        title: ''
     };
 
     onAddItemClick = () => {
         let newText = this.state.title;
-        this.setState({title: ""});
+        this.setState({title: ''});
 
-        if (newText === "") {
+        if (newText === '') {
             this.setState({error: true});
         } else {
             this.setState({error: false});
@@ -40,13 +45,13 @@ class AddNewItemForm extends React.Component<PropsType, StateType> {
     };
 
     onKeyPress = (e: KeyboardEvent<HTMLInputElement>) => {
-        if (e.key === "Enter") {
+        if (e.key === 'Enter') {
             this.onAddItemClick();
         }
     };
 
     render = () => {
-        let classNameForInput = this.state.error ? "error" : "";
+        let classNameForInput = this.state.error ? 'error' : '';
 
         return (
             <div className="todoList-newTaskForm">
@@ -57,7 +62,8 @@ class AddNewItemForm extends React.Component<PropsType, StateType> {
                        onKeyPress={this.onKeyPress}
                        value={this.state.title}
                 />
-                <button onClick={this.onAddItemClick}>Add</button>
+                {/*<button onClick={this.onAddItemClick}>Add</button>*/}
+                <Button onClick={this.onAddItemClick} variant="contained" size="small" color="primary">Add</Button>
             </div>
 
         );
