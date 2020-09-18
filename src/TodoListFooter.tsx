@@ -31,13 +31,9 @@ type OwnPropsType = {
         return (
             <div className="todoList-footer">
                 { !this.state.isHidden && <div>
-                     {/*<button onClick={ this.onAllFilterClick } className={classForAll}>All</button>*/}
-                     {/*<button onClick={ this.onCompletedFilterClick } className={classForCompleted}>Completed</button>*/}
-                     {/*<button onClick={ this.onActiveFilterClick } className={classForActive}>Active</button>*/}
-
-                    <Button onClick={ this.onAllFilterClick } variant="contained" size="small"  className={classForAll}>All</Button>
-                    <Button onClick={ this.onCompletedFilterClick } variant="contained" size="small" color="primary" className={classForCompleted}>Completed</Button>
-                    <Button onClick={ this.onActiveFilterClick } variant="contained" size="small" color="primary" className={classForActive}>Active</Button>
+                    <Button onClick={ this.onAllFilterClick } variant={this.props.filterValue === "All" ? "contained" : "text"} size="small" color="primary" >All</Button>
+                    <Button onClick={ this.onCompletedFilterClick } variant={this.props.filterValue === "Completed" ? "contained" : "text"} size="small" color="secondary" >Completed</Button>
+                    <Button onClick={ this.onActiveFilterClick } variant={this.props.filterValue === "Active" ? "contained" : "text"} size="small" color="inherit" >Active</Button>
                   </div>
                 }
                 { !this.state.isHidden && <span onClick={ this.onShowFiltersClick }>hide</span> }

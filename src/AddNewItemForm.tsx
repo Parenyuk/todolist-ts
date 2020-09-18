@@ -26,6 +26,7 @@ class AddNewItemForm extends React.Component<PropsType, StateType> {
     };
 
     onAddItemClick = () => {
+        debugger
         let newText = this.state.title;
         this.setState({title: ''});
 
@@ -56,7 +57,7 @@ class AddNewItemForm extends React.Component<PropsType, StateType> {
 
         return (
             <div className="todoList-newTaskForm">
-                <TextField /*className={error ? 'error' : 'text'}*/
+                <TextField
                     type="text"
                     onChange={this.onTitleChanged}
                     onKeyPress={this.onKeyPress}
@@ -64,8 +65,6 @@ class AddNewItemForm extends React.Component<PropsType, StateType> {
                     label="New item name" variant="outlined" size='small'
                     error={!!this.state.error}
                     helperText={'title is required'}
-
-
                 />
                 <Button onClick={this.onAddItemClick} variant="contained" size="medium" color="primary">Add</Button>
             </div>
