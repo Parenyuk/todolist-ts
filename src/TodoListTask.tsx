@@ -1,7 +1,7 @@
 import React, {ChangeEvent} from 'react';
 import './App.css';
 import {ObjTaskType, TaskType} from './types';
-import {IconButton} from '@material-ui/core';
+import {IconButton, FormControlLabel, Checkbox, TextField} from '@material-ui/core';
 import DeleteIcon from '@material-ui/icons/Delete';
 
 type StateType = {
@@ -47,23 +47,37 @@ class TodoListTask extends React.Component<PropsType, StateType> {
     };
     render = () => {
         let containerCssClass = this.props.task.isDone ? "todoList-task done" : "todoList-task";
-        let priotityTitle = "";
+        let priorityTitle = "";
         switch (this.props.task.priority) {
-            case 0: priotityTitle = "Low"; break;
-            case 1: priotityTitle = "Middle"; break;
-            case 2: priotityTitle = "High"; break;
-            case 3: priotityTitle = "Urgently"; break;
-            case 4: priotityTitle = "Later"; break;
+            case 0: priorityTitle = "Low"; break;
+            case 1: priorityTitle = "Middle"; break;
+            case 2: priorityTitle = "High"; break;
+            case 3: priorityTitle = "Urgently"; break;
+            case 4: priorityTitle = "Later"; break;
         }
         return (
                 <div className={containerCssClass}>
-                    <input type="checkbox" checked={this.props.task.status === 2}
-                           onChange={this.onIsDoneChanged}/>
+                            <Checkbox
+                                checked={this.props.task.status === 2}
+                                onChange={this.onIsDoneChanged}
+                                name="checkedB"
+                                color="primary"
+                                size='small'
+                            />
                     { this.state.editMode
-                        ? <input onBlur={this.deactivateEditMode} onChange={this.onTitleChanged} autoFocus={true}
-                                 value={this.state.title} />
-                        : <span onClick={this.activateEditMode}>{this.props.task.title}</span>
-                    }, priority: {priotityTitle}
+                        // ? <input onBlur={this.deactivateEditMode} onChange={this.onTitleChanged} autoFocus={true}
+                        //          value={this.state.title} />
+                        // : <span onClick={this.activateEditMode}>{this.props.task.title}</span>
+                   ? <TextField
+                        type="text"
+                        onBlur={this.deactivateEditMode}
+                        onChange={this.onTitleChanged}
+                        autoFocus={true}
+                        value={this.state.title}
+                        label="New item name" variant="outlined" size='small'
+                        />
+                    :     <span onClick={this.activateEditMode}>{this.props.task.title}</span>
+                    }, priority: {priorityTitle}
                     <IconButton aria-label="delete"  size="small"  onClick={this.onDeleteTask} >
                         <DeleteIcon fontSize="small"> </DeleteIcon>
                     </IconButton>

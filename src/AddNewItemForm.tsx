@@ -4,6 +4,8 @@ import Button from '@material-ui/core/Button';
 import {createStyles, makeStyles, Theme} from '@material-ui/core/styles';
 import indigo from '@material-ui/core/colors/indigo';
 import TextField from '@material-ui/core/TextField';
+import AddRoundedIcon from '@material-ui/icons/AddRounded';
+import { IconButton } from '@material-ui/core';
 
 
 type StateType = {
@@ -53,7 +55,7 @@ class AddNewItemForm extends React.Component<PropsType, StateType> {
 
     render = () => {
         return (
-            <div className="todoList-newTaskForm">
+            <div className="todoList-newTaskForm" style={{padding: '10px'}}>
                 <TextField
                     type="text"
                     onChange={this.onTitleChanged}
@@ -63,7 +65,7 @@ class AddNewItemForm extends React.Component<PropsType, StateType> {
                     error={!!this.state.error}
                     helperText={ this.state.error && 'title is required'}
                 />
-                <Button onClick={this.onAddItemClick} variant="contained" size="medium" color="primary">Add</Button>
+                <IconButton onClick={this.onAddItemClick}  size="medium" color="primary"><AddRoundedIcon /></IconButton>
             </div>
 
         );

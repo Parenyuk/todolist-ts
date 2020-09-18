@@ -1,7 +1,8 @@
-import React, { ChangeEvent } from 'react';
+import React, {ChangeEvent} from 'react';
 import './App.css';
+import {TextField} from '@material-ui/core';
 
-type StateType ={
+type StateType = {
     title: string
     editMode: boolean
 }
@@ -11,7 +12,7 @@ type OwnPropsType = {
     updateTitle: (title: string) => void
 }
 
- class TodoListTitle extends React.Component<OwnPropsType, StateType> {
+class TodoListTitle extends React.Component<OwnPropsType, StateType> {
 
     state = {
         editMode: false,
@@ -36,10 +37,12 @@ type OwnPropsType = {
             <>
                 {
                     this.state.editMode
-                        ? <input value={this.state.title}
-                                 autoFocus={true}
-                                 onBlur={this.deactivateEditMode}
-                                 onChange={this.onTitleChanged}
+                        ? <TextField value={this.state.title}
+                                     autoFocus={true}
+                                     onBlur={this.deactivateEditMode}
+                                     onChange={this.onTitleChanged}
+                                     label="New item name" variant="outlined" size='small'
+
                         />
                         : <h3 className="todoList-header__title" onClick={this.activateEditMode}>{this.props.title}</h3>
                 }

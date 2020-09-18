@@ -15,7 +15,7 @@ import {
 import {TaskType} from './types';
 import {ThunkDispatch} from 'redux-thunk';
 import {AppStateType} from './store';
-import {IconButton} from '@material-ui/core';
+import {IconButton, Grid} from '@material-ui/core';
 import DeleteIcon from '@material-ui/icons/Delete';
 
 type StateType = {
@@ -94,15 +94,15 @@ class TodoList extends React.Component<PropsType, StateType> {
         let {tasks = []} = this.props;
         return (
             <div className="todoList">
-                <div className="todoList-header">
-                    <div className="wrapper">
+                <Grid  className="todoList-header">
+                    <Grid  className="wrapper"  >
                         <TodoListTitle title={this.props.title} updateTitle={this.updateTitle}/>
                         <IconButton aria-label="delete" size="small" onClick={this.deleteTodolist}>
                             <DeleteIcon fontSize="small" ></DeleteIcon>
                         </IconButton>
-                    </div>
+                    </Grid >
                     <AddNewItemForm addItem={this.addTask}/>
-                </div>
+                </Grid>
 
                 <TodoListTasks changeStatus={this.changeStatus}
                                changeTitle={this.changeTitle}

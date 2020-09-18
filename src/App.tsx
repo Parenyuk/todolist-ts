@@ -8,6 +8,7 @@ import {TodoType} from './types';
 import {AppStateType} from './store';
 import {Dispatch} from 'redux';
 import {ThunkDispatch} from 'redux-thunk';
+import { Container, Grid, Paper } from '@material-ui/core';
 
 type MapStatePropsType = {
     todolists: Array<TodoType>
@@ -35,20 +36,26 @@ class App extends React.Component<MapStatePropsType & MapDispatchPropsType> {
 
     render = () => {
         const todolists = this.props.todolists.map(tl => {
-            return <TodoList key={tl.id}
+            return <Grid item>
+            <Paper elevation={3} style={{padding: '15px'}}>
+            <TodoList key={tl.id}
                              id={tl.id}
                              title={tl.title}
                              tasks={tl.tasks}/>
+            </Paper>
+            </Grid>
         });
 
         return (
             <>
-                <div>
+                <Container fixed>
+                <Grid container>
                     <AddNewItemForm addItem={this.addTodoList}/>
-                </div>
-                <div className="App">
+                </Grid>
+                <Grid container spacing={7} className="App">
                     {todolists}
-                </div>
+                </Grid>
+                </Container>
             </>
         );
     }

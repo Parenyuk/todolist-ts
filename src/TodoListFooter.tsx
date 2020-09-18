@@ -2,6 +2,7 @@ import React from 'react';
 import '../src/App.css';
 import Button from '@material-ui/core/Button';
 
+
 type StateType = {
     isHidden: boolean
 }
@@ -20,7 +21,9 @@ type OwnPropsType = {
     onCompletedFilterClick = () => { this.props.changeFilter("Completed"); };
     onActiveFilterClick = () => { this.props.changeFilter("Active"); };
     onShowFiltersClick = () => { this.setState({isHidden: true}) };
-    onHideFiltersClick = () => { this.setState({isHidden: false}) };
+    onHideFiltersClick = () => { this.setState({isHidden: false}) }
+
+
 
     render = () => {
 
@@ -32,12 +35,13 @@ type OwnPropsType = {
                     <Button onClick={ this.onActiveFilterClick } variant={this.props.filterValue === "Active" ? "contained" : "text"} size="small" color="inherit" >Active</Button>
                   </div>
                 }
-                { !this.state.isHidden && <span onClick={ this.onShowFiltersClick }>hide</span> }
-                { this.state.isHidden && <span onClick={ this.onHideFiltersClick }>show</span> }
+                { !this.state.isHidden && <Button onClick={ this.onShowFiltersClick } >hide</Button> }
+                { this.state.isHidden && <Button onClick={ this.onHideFiltersClick }>show</Button> }
             </div>
         );
     }
 }
 
 export default TodoListFooter;
+
 
