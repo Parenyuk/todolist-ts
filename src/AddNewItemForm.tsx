@@ -3,6 +3,7 @@ import './App.css';
 import Button from '@material-ui/core/Button';
 import {createStyles, makeStyles, Theme} from '@material-ui/core/styles';
 import indigo from '@material-ui/core/colors/indigo';
+import TextField from '@material-ui/core/TextField';
 
 
 type StateType = {
@@ -55,15 +56,18 @@ class AddNewItemForm extends React.Component<PropsType, StateType> {
 
         return (
             <div className="todoList-newTaskForm">
-                <input className={classNameForInput}
-                       type="text"
-                       placeholder="New item name"
-                       onChange={this.onTitleChanged}
-                       onKeyPress={this.onKeyPress}
-                       value={this.state.title}
+                <TextField /*className={error ? 'error' : 'text'}*/
+                    type="text"
+                    onChange={this.onTitleChanged}
+                    onKeyPress={this.onKeyPress}
+                    value={this.state.title}
+                    label="New item name" variant="outlined" size='small'
+                    error={!!this.state.error}
+                    helperText={'title is required'}
+
+
                 />
-                {/*<button onClick={this.onAddItemClick}>Add</button>*/}
-                <Button onClick={this.onAddItemClick} variant="contained" size="small" color="primary">Add</Button>
+                <Button onClick={this.onAddItemClick} variant="contained" size="medium" color="primary">Add</Button>
             </div>
 
         );
