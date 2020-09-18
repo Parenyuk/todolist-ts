@@ -19,7 +19,6 @@ type PropsType = OwnPropsType
 
 class AddNewItemForm extends React.Component<PropsType, StateType> {
 
-
     state = {
         error: false,
         title: ''
@@ -53,8 +52,6 @@ class AddNewItemForm extends React.Component<PropsType, StateType> {
     };
 
     render = () => {
-        let classNameForInput = this.state.error ? 'error' : '';
-
         return (
             <div className="todoList-newTaskForm">
                 <TextField
@@ -64,7 +61,7 @@ class AddNewItemForm extends React.Component<PropsType, StateType> {
                     value={this.state.title}
                     label="New item name" variant="outlined" size='small'
                     error={!!this.state.error}
-                    helperText={'title is required'}
+                    helperText={ this.state.error && 'title is required'}
                 />
                 <Button onClick={this.onAddItemClick} variant="contained" size="medium" color="primary">Add</Button>
             </div>

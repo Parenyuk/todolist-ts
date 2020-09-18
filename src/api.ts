@@ -17,7 +17,7 @@ type TaskResponseType = {
 
 type TodoResponseType<T> = {
     data: {
-        items: T
+        item: T
     }
 }
 

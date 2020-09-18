@@ -64,10 +64,9 @@ class TodoListTask extends React.Component<PropsType, StateType> {
                                  value={this.state.title} />
                         : <span onClick={this.activateEditMode}>{this.props.task.title}</span>
                     }, priority: {priotityTitle}
-                    <IconButton aria-label="delete"  size="small">
-                        <DeleteIcon fontSize="small" onClick={this.onDeleteTask} ></DeleteIcon>
+                    <IconButton aria-label="delete"  size="small"  onClick={this.onDeleteTask} >
+                        <DeleteIcon fontSize="small"> </DeleteIcon>
                     </IconButton>
-                    {/*<button onClick={this.onDeleteTask}>X</button>*/}
                 </div>
         );
     }

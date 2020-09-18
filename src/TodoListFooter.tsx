@@ -24,10 +24,6 @@ type OwnPropsType = {
 
     render = () => {
 
-        let classForAll = this.props.filterValue === "All" ? "filter-active" : "";
-        let classForCompleted = this.props.filterValue === "Completed" ? "filter-active" : "";
-        let classForActive = this.props.filterValue === "Active" ? "filter-active" : "";
-
         return (
             <div className="todoList-footer">
                 { !this.state.isHidden && <div>

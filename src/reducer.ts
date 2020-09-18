@@ -1,7 +1,6 @@
 import {api} from "./api";
 import {AppStateType, InferActionTypes} from './store';
 import {TaskType, TodoType} from './types';
-import {Dispatch} from 'redux';
 import {ThunkAction, ThunkDispatch} from 'redux-thunk';
 
 
@@ -143,7 +142,7 @@ export const deleteTodolistTC = (todolistId: string): ThunkType => (dispatch:  T
 export const addTaskTC = (newText: string, todolistId: string): ThunkType => (dispatch:  ThunkDispatch<AppStateType, unknown, ActionsType>) => {
     api.createTask(newText, todolistId).then(res => {
         debugger
-        let newTask = res.data.data.items;
+        let newTask = res.data.data.item;
         dispatch(actions.addTaskAC(newTask, todolistId))
     });
 }
@@ -171,20 +170,11 @@ export const addTodolistTC = (title: string):ThunkType => (dispatch: ThunkDispat
     api.createTodolist(title)
         .then(res => {
             debugger
-            dispatch(actions.addTodolistAC(res.data.data.items))
+            dispatch(actions.addTodolistAC(res.data.data.item))
         });
 
 }
 
-// export const setTasksTC = (todolistId) => (dispatch) => {
-//     debugger
-//     return  api.getTasks(todolistId)
-//         .then(res => {
-//             let allTasks = res.data.items;
-//             dispatch(allTasks, todolistId)
-//
-//         });
-// }
 export const getTasksTC = (todolistId: string): ThunkType =>  (dispatch:  ThunkDispatch<AppStateType, unknown, ActionsType>) => {
      api.getTasks(todolistId)
         .then(res => {

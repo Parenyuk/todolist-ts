@@ -51,6 +51,7 @@ class TodoList extends React.Component<PropsType, StateType> {
     }
 
     addTask = (newText: string) => {
+        debugger
         this.props.addTask(newText, this.props.id)
     };
 
@@ -96,8 +97,8 @@ class TodoList extends React.Component<PropsType, StateType> {
                 <div className="todoList-header">
                     <div className="wrapper">
                         <TodoListTitle title={this.props.title} updateTitle={this.updateTitle}/>
-                        <IconButton aria-label="delete" size="small">
-                            <DeleteIcon fontSize="small" onClick={this.deleteTodolist}></DeleteIcon>
+                        <IconButton aria-label="delete" size="small" onClick={this.deleteTodolist}>
+                            <DeleteIcon fontSize="small" ></DeleteIcon>
                         </IconButton>
                     </div>
                     <AddNewItemForm addItem={this.addTask}/>
